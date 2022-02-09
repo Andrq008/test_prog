@@ -1,1 +1,2 @@
-#!/bin/python
+
+print('it\'s working')
