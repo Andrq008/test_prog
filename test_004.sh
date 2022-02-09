@@ -8,6 +8,7 @@ then
  else
   echo -e 'Subject:Test File\n\nФайлы найдены\nФайлы изменены\nФайлы не загрузились' | sendmail -v 107@maverik.ru
  fi
-else
- echo 'no find'
+elif [[ ! $(df -h | grep '/sys/fs/cgroup') ]]
+then
+  echo -e 'Subject:Test File\n\nНет каталога\nРазмонтировался каталог\nФайлы не загрузились' | sendmail -v 107@maverik.ru
 fi
