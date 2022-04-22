@@ -12,5 +12,10 @@ then
 fi
 if [[ $(df -h | grep /dev/sda5 | awk '{print $5}') > 64% ]]
 then
- echo -e 'Subject:Mint\n\nОсталось мало памяти на сервер mint\nНужно произвести чистку сервера' | sendmail -v 107@maverik.ru > /dev/null 2>&1
+ mem_space=$(df -h | grep /dev/sda5 | awk '{print $4}')
+ echo -e "Subject:Mint\n\nОсталось $mem_space памяти /dev/sda5\nНужно произвести чистку сервера" | sendmail -v 107@maverik.ru > /dev/null 2>&1
+fi
+if [[ $(du -sh /root/) > 995 ]]
+then
+ echo -e "Subject:Mint\n\nКаталог занимает много памяти\nНужно произвести чистку" | sendmail -v 107@maverik.ru > /dev/null 2>&1
 fi
